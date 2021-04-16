@@ -11,7 +11,7 @@ class Particle {
     }
     display() {
         var pos = this.body.position;
-        var angle = thi.body.angle;
+        var angle = this.body.angle;
 
         push();
         translate(pos.x, pos.y);

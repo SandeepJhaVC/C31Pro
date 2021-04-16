@@ -1,6 +1,7 @@
 const Engine = Matter.Engine;
 const World = Matter.World;
 const Bodies = Matter.Bodies;
+const Body = Matter.Body;
 
 var engine, world;
 
@@ -26,20 +27,26 @@ function setup() {
     }
 
     for(var b = 15; b <= width-10; b = b+50){
-      plinko.push(new Plinko(b,175));
+      plinko.push(new Plinko(b,175,10));
     }
 
-    if(frameCount%60===0){
-      particle.push(new Particle(random(width/2-10, width/2+10), 10,10));
-    }
+    
 
 }
 
 function draw() {
     background("grey");
+    Engine.update(engine);
 
-    for(var d = 0; d<particle.length; d++){
-      particle[j].display();
+    if(frameCount%250===0){
+      for(var b = 15; b <= width-10; b = b+50){
+        particles.push(new Particle(random(width/2-10, width/2+10), 10,10));
+      }
+      
+    }
+
+    for(var d = 0; d<particles.length; d++){
+      particles[d].display();
     }
 
     for(var b = 0; b<plinko.length; b++){
@@ -50,7 +57,9 @@ function draw() {
       division[a].display();
     }
 
+    
+
     ground.display();
 
-    Engine.update(engine);
+    
 }
